@@ -3,12 +3,12 @@ const webpack = require('webpack-stream');
 const clean = require('gulp-clean');
 
 gulp.task('clean', ()=> {
-  gulp.src('./build/*',{read:false})
+  return gulp.src('build/**/**/**/*',{read:false})
   .pipe(clean());
 });
 
 gulp.task('copy', ()=> {
-  gulp.src('app/*')
+  gulp.src('./app/**/**/**/*')
   .pipe(gulp.dest('build/'));
 });
 
@@ -24,4 +24,4 @@ gulp.task('bundle', ()=> {
 
 gulp.task('build', ['clean', 'copy', 'bundle']);
 gulp.task('default', ['build']);
-gulp.watch('app/*','build');
+gulp.watch(['app/*'],['build']);
