@@ -22,6 +22,16 @@ gulp.task('bundle', ()=> {
   .pipe(gulp.dest('build/'));
 });
 
+gulp.task('bundle:test', ()=> {
+  return gulp.src(__dirname + '/test/*_test.js')
+  .pipe(webpack({
+    output: {
+      filename: 'test_bundle.js'
+    }
+  }))
+  .pipe(gulp.dest(__dirname + '/test'));
+});
+
 gulp.task('build', ['copy', 'bundle']);
 gulp.task('default', ['build']);
 gulp.watch(['app/*'],['build']);
