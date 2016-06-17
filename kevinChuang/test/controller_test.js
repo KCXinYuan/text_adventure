@@ -4,7 +4,7 @@ const angular = require('angular');
 require('angular-mocks');
 require('../app/js/client.js');
 
-describe('controller tests', ()=> {
+describe('setup controller tests', ()=> {
   let gamectrl;
 
   it('should run a test', ()=> {
@@ -19,10 +19,10 @@ describe('controller tests', ()=> {
   });
 
   it('should have a property gamelog', ()=> {
+    it('should have a property hasWeapon', ()=> {
     expect(Array.isArray(gamectrl.model.gamelog)).toBe(true);
   });
 
-  it('should have a property hasWeapon', ()=> {
     expect(gamectrl.model.hasWeapon).toBe(false);
   });
 
@@ -32,6 +32,17 @@ describe('controller tests', ()=> {
 
   it('should have an object of locations', ()=> {
     expect(typeof gamectrl.model.location).toBe('object');
+  });
+});
+
+describe('action controller tests', ()=> {
+  let gamectrl;
+
+  beforeEach(()=> {
+    angular.mock.module('textAdventure');
+    angular.mock.inject(function($controller){
+      gamectrl = new $controller('GameController');
+    });
   });
 
   it('should accept inputs', ()=> {
