@@ -8,12 +8,12 @@ const clean = require('gulp-clean');
 // });
 
 gulp.task('copy', ()=> {
-  gulp.src('./app/**/**/**/*')
+  gulp.src('./app/**/*.html')
   .pipe(gulp.dest('build/'));
 });
 
 gulp.task('bundle', ()=> {
-  return gulp.src('./app/js/client.js')
+  return gulp.src('./app/client.js')
   .pipe(webpack({
     output:{
       filename:'bundle.js'
@@ -34,4 +34,3 @@ gulp.task('bundle:test', ()=> {
 
 gulp.task('build', ['copy', 'bundle']);
 gulp.task('default', ['build']);
-gulp.watch(['app/*'],['build']);
