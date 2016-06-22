@@ -20,8 +20,8 @@ describe('setup controller tests', ()=> {
 
   it('should have a property gamelog', ()=> {
     it('should have a property hasWeapon', ()=> {
-    expect(Array.isArray(gamectrl.model.gamelog)).toBe(true);
-  });
+      expect(Array.isArray(gamectrl.model.gamelog)).toBe(true);
+    });
 
     expect(gamectrl.model.hasWeapon).toBe(false);
   });
@@ -46,21 +46,21 @@ describe('action controller tests', ()=> {
   });
 
   it('should accept inputs', ()=> {
-    gamectrl.model.command = 'walk left'
+    gamectrl.model.command = 'walk left';
     gamectrl.processInput();
     expect(gamectrl.model.userLocation).toBe('weaponRoom');
   });
 
   it('should pick up a weapon', ()=> {
-    gamectrl.model.command = 'walk left'
-    gamectrl.processInput()
-    gamectrl.model.command = 'take sword'
+    gamectrl.model.command = 'walk left';
+    gamectrl.processInput();
+    gamectrl.model.command = 'take sword';
     gamectrl.processInput();
     expect(gamectrl.model.hasWeapon).toBe(true);
   });
 
   it('should process bad input', () => {
-    gamectrl.model.command = 'blah blah'
+    gamectrl.model.command = 'blah blah';
     gamectrl.processInput();
     expect(gamectrl.model.gamelog[1].msg).toBe('Bad Command, enter ? for available commands');
   });
@@ -70,7 +70,7 @@ describe('action controller tests', ()=> {
     gamectrl.processInput();
     gamectrl.model.command = 'look';
     gamectrl.processInput();
-    expect(gamectrl.model.gamelog[1].msg).toBe('You are in the weapon room. There is a sword on a rack.')
+    expect(gamectrl.model.gamelog[1].msg).toBe('You are in the weapon room. There is a sword on a rack.');
   });
 
   it('should give the available commands when ? is entered', ()=> {
@@ -86,7 +86,7 @@ describe('action controller tests', ()=> {
     gamectrl.processInput();
     gamectrl.model.command = 'take sword';
     gamectrl.processInput();
-    gamectrl.model.command = 'walk right'
+    gamectrl.model.command = 'walk right';
     gamectrl.processInput();
     expect(gamectrl.model.gamelog[5].msg).toBe('You are in a room with a monster. You have a sword in hand.');
   });
@@ -96,9 +96,9 @@ describe('action controller tests', ()=> {
     gamectrl.processInput();
     gamectrl.model.command = 'take sword';
     gamectrl.processInput();
-    gamectrl.model.command = 'walk right'
+    gamectrl.model.command = 'walk right';
     gamectrl.processInput();
-    gamectrl.model.command = 'fight monster'
+    gamectrl.model.command = 'fight monster';
     gamectrl.processInput();
     expect(gamectrl.model.gamelog[7].msg).toBe('You have slain the monster. Thanks for playing!');
   });
