@@ -54,69 +54,69 @@ function GameController() {
 
     switch (this.model.command) {
 
-    case '?':
-      this.model.gamelog.push({
-        src: 'game',
-        msg: this.currentHelpMsg()
-      });
-      break;
-
-    case 'walk left':
-      this.model.userLocation = 'weaponRoom';
-      this.model.gamelog.push({
-        src: 'game',
-        msg: this.model.location.weaponRoom.prompt
-      });
-      break;
-
-    case 'walk right':
-      this.model.userLocation = this.model.hasWeapon ? 'monsterRoomWithWeapon' : 'monsterRoomWithoutWeapon';
-
-      var currentRoom = this.model.userLocation;
-
-      this.model.gamelog.push({
-        src: 'game',
-        msg: this.model.location[currentRoom].prompt
-      });
-      break;
-
-    case 'take sword':
-      this.model.hasWeapon = true;
-      this.model.gamelog.push({
-        src: 'game',
-        msg: 'Sword taken.'
-      });
-      break;
-
-    case 'look':
-      var lookRoom = this.model.userLocation;
-      this.model.gamelog.push({
-        src: 'game',
-        msg: this.model.location[lookRoom].prompt
-      });
-      break;
-
-    case 'fight monster':
-      this.model.gamelog.push({
-        src: 'game',
-        msg: 'You have slain the monster. Thanks for playing!'
-      });
-      break;
-
-    default:
-
-      var sayArr = this.model.command.split(' ');
-      if(sayArr[0]==='say') {
+      case '?':
         this.model.gamelog.push({
           src: 'game',
-          msg: sayArr[1] || 'Say something!'
+          msg: this.currentHelpMsg()
         });
-      } else {
+        break;
+
+      case 'walk left':
+        this.model.userLocation = 'weaponRoom';
         this.model.gamelog.push({
           src: 'game',
-          msg: 'Bad Command, enter ? for available commands'
+          msg: this.model.location.weaponRoom.prompt
         });
-      }
+        break;
+
+      case 'walk right':
+        this.model.userLocation = this.model.hasWeapon ? 'monsterRoomWithWeapon' : 'monsterRoomWithoutWeapon';
+
+        var currentRoom = this.model.userLocation;
+
+        this.model.gamelog.push({
+          src: 'game',
+          msg: this.model.location[currentRoom].prompt
+        });
+        break;
+
+      case 'take sword':
+        this.model.hasWeapon = true;
+        this.model.gamelog.push({
+          src: 'game',
+          msg: 'Sword taken.'
+        });
+        break;
+
+      case 'look':
+        var lookRoom = this.model.userLocation;
+        this.model.gamelog.push({
+          src: 'game',
+          msg: this.model.location[lookRoom].prompt
+        });
+        break;
+
+      case 'fight monster':
+        this.model.gamelog.push({
+          src: 'game',
+          msg: 'You have slain the monster. Thanks for playing!'
+        });
+        break;
+
+      default:
+
+        var sayArr = this.model.command.split(' ');
+        if(sayArr[0]==='say') {
+          this.model.gamelog.push({
+            src: 'game',
+            msg: sayArr[1] || 'Say something!'
+          });
+        } else {
+          this.model.gamelog.push({
+            src: 'game',
+            msg: 'Bad Command, enter ? for available commands'
+          });
+        }
     }
     this.model.command = '';
   };
@@ -126,26 +126,26 @@ function GameController() {
 
     switch (this.model.userLocation) {
 
-    case 'weaponRoom':
-      this.model.location.weaponRoom.commands.forEach(function(item,index) {
-        str += index > 0 ? ' | ' : '';
-        str += item;
-      });
-      break;
+      case 'weaponRoom':
+        this.model.location.weaponRoom.commands.forEach(function(item,index) {
+          str += index > 0 ? ' | ' : '';
+          str += item;
+        });
+        break;
 
-    case 'monsterRoomWithoutWeapon':
-      this.model.location.monsterRoomWithoutWeapon.commands.forEach(function(item,index) {
-        str += index > 0 ? ' | ' : '';
-        str += item;
-      });
-      break;
+      case 'monsterRoomWithoutWeapon':
+        this.model.location.monsterRoomWithoutWeapon.commands.forEach(function(item,index) {
+          str += index > 0 ? ' | ' : '';
+          str += item;
+        });
+        break;
 
-    case 'monsterRoomWithWeapon':
-      this.model.location.monsterRoomWithWeapon.commands.forEach(function(item,index) {
-        str += index > 0 ? ' | ' : '';
-        str += item;
-      });
-      break;
+      case 'monsterRoomWithWeapon':
+        this.model.location.monsterRoomWithWeapon.commands.forEach(function(item,index) {
+          str += index > 0 ? ' | ' : '';
+          str += item;
+        });
+        break;
     }
     return str;
   };
