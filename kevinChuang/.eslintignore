@@ -5,3 +5,4 @@
 **/test/*_bundle*
 *.md
 package.json
+test_bundle
